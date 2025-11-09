@@ -23,11 +23,18 @@ with st.sidebar:
     st.info("**Laboratorio Integrador**\n\nGeoinformática 2025\n\nUSACH")
 
 # Botón para descargar datos manualmente
-st.sidebar.markdown("### ⚙️ Descarga de Datos")
+st.sidebar.markdown("### 📥 Descarga de Datos")
 if st.sidebar.button("📥 Descargar Datos Geoespaciales"):
     with st.spinner("Descargando datos para la comuna seleccionada..."):
         subprocess.run([sys.executable, "scripts/download_data.py"])
     st.success("✅ Datos descargados correctamente. Recarga la página para ver los cambios.")
+
+# Botón para procesar datos
+st.sidebar.markdown("### 🛠️ Procesamiento de Datos")
+if st.sidebar.button("⚙️ Procesar Datos en PostGIS"):
+    with st.spinner("Procesando datos y cargando en PostGIS..."):
+        subprocess.run([sys.executable, "scripts/process_data.py"])
+    st.success("✅ Datos procesados y cargados en PostGIS correctamente.")
 
 # Cargar datos
 boundary_path = DATA_DIR / "comuna_boundaries.geojson"
